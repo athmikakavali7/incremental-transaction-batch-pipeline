@@ -79,14 +79,14 @@ Tech Stack:
 
 
 Execution Flow:
-1.Detect CSV files in data/raw/
-2.Check metadata table to skip already processed files
-3.Read file using strict Spark schema
-4.Deduplicate transactions using window function
-5.Perform idempotent upsert into PostgreSQL
-6.Insert file name into metadata table
-7.Move file to data/archive/
-8.Log execution details to logs/pipeline.log
+- Detect CSV files in data/raw/
+- Check metadata table to skip already processed files
+- Read file using strict Spark schema
+- Deduplicate transactions using window function
+- Perform idempotent upsert into PostgreSQL
+- Insert file name into metadata table
+- Move file to data/archive/
+- Log execution details to logs/pipeline.log
 
 
 Key Features:
@@ -126,20 +126,23 @@ incremental-transaction-batch-pipeline/
 ```
 
 Database Schema:
-fact_transactions
-transaction_id (Primary Key)
-user_id
-transaction_time
-amount
-status
-updated_at
+- fact_transactions
+- transaction_id (Primary Key)
+- user_id
+- transaction_time
+- amount
+- status
+- updated_at
 
 processed_files
+
 file_name (Primary Key)
+
 processed_at
 
 
 Sample Input:
+
 transaction_id,user_id,transaction_time,amount,status  
 t1,u1,2026-01-01 10:00:00,100,completed  
 t1,u1,2026-01-01 10:20:00,110,updated  
