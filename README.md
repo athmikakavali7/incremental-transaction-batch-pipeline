@@ -1,5 +1,5 @@
-**Incremental Idempotent Batch Transaction Processing Pipeline
-**
+Incremental Idempotent Batch Transaction Processing Pipeline
+
 Overview:
 This project implements an end-to-end incremental, idempotent batch data pipeline using PySpark and PostgreSQL.
 The pipeline ingests transaction data files, enforces strict schema validation, performs window-based deduplication, executes idempotent upsert operations into a relational database, tracks processed files using metadata, and archives successfully processed inputs.
