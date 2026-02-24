@@ -15,46 +15,50 @@ This project demonstrates how to design and implement such a system using distri
 
 
 Architecture:
-            +---------------------------+
-            |       Raw CSV Files       |
-            |        data/raw/          |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |     PySpark Ingestion     |
-            |    (Schema Enforcement)   |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |    Deduplication Layer    |
-            |   (Window Functions)      |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |  PostgreSQL Upsert Layer  |
-            |     (Idempotent Load)     |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |  Metadata Tracking Table  |
-            |      processed_files      |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |       File Archiving      |
-            |       data/archive/       |
-            +-------------+-------------+
-                          |
-                          v
-            +---------------------------+
-            |     Structured Logging    |
-            |     logs/pipeline.log     |
-            +---------------------------+
+## System Architecture
+
+```
++---------------------------+
+|       Raw CSV Files       |
+|        data/raw/          |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|     PySpark Ingestion     |
+|    (Schema Enforcement)   |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|    Deduplication Layer    |
+|   (Window Functions)      |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|  PostgreSQL Upsert Layer  |
+|     (Idempotent Load)     |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|  Metadata Tracking Table  |
+|      processed_files      |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|       File Archiving      |
+|       data/archive/       |
++-------------+-------------+
+              |
+              v
++---------------------------+
+|     Structured Logging    |
+|     logs/pipeline.log     |
++---------------------------+
+```
 
 
 Architectural Characteristic:
