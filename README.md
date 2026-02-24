@@ -178,7 +178,6 @@ src/config.py
 
 Set your PostgreSQL credentials.
 
----
 
 5️. Create Required Tables in PostgreSQL
 
@@ -198,7 +197,6 @@ CREATE TABLE IF NOT EXISTS processed_files (
 );
 ```
 
----
 
 6️. Place CSV File
 
@@ -208,7 +206,6 @@ Put your input CSV file inside:
 data/raw/
 ```
 
----
 
 7️. Execute Pipeline
 
@@ -216,7 +213,6 @@ data/raw/
 python src/main.py
 ```
 
----
 
 Idempotency Strategy
 
@@ -240,9 +236,8 @@ This guarantees:
 - Only latest transaction updates are applied  
 - Safe re-execution of the pipeline  
 
----
 
-Observability
+Observability:
 
 Structured logging is enabled.
 
