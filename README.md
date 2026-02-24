@@ -5,6 +5,7 @@ This project implements an end-to-end incremental, idempotent batch data pipelin
 The pipeline ingests transaction data files, enforces strict schema validation, performs window-based deduplication, executes idempotent upsert operations into a relational database, tracks processed files using metadata, and archives successfully processed inputs.
 
 Large-scale transaction systems require reliable batch processing mechanisms that ensure:
+
 -No duplicate records
 -Safe reprocessing without data corruption
 -Consistent and accurate data state
