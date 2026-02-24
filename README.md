@@ -5,11 +5,10 @@ This project implements an end-to-end incremental, idempotent batch data pipelin
 The pipeline ingests transaction data files, enforces strict schema validation, performs window-based deduplication, executes idempotent upsert operations into a relational database, tracks processed files using metadata, and archives successfully processed inputs.
 
 Large-scale transaction systems require reliable batch processing mechanisms that ensure:
-
--No duplicate records
--Safe reprocessing without data corruption
--Consistent and accurate data state
--Operational traceability and observability
+- No duplicate records
+- Safe reprocessing without data corruption
+- Consistent and accurate data state
+- Operational traceability and observability
 
 This project demonstrates how to design and implement such a system using distributed data processing principles and relational database upsert strategies.
 
@@ -71,12 +70,12 @@ Architectural Characteristic:
 
 
 Tech Stack:
--Python
--PySpark
--PostgreSQL
--SQL
--psycopg2
--Logging module
+- Python
+- PySpark
+- PostgreSQL
+- SQL
+- psycopg2
+- Logging module
 
 
 Execution Flow:
@@ -91,15 +90,15 @@ Execution Flow:
 
 
 Key Features:
--Strict schema enforcement using PySpark
--Deduplication using ROW_NUMBER() window function
--Idempotent database upsert using ON CONFLICT
--Incremental file processing via metadata tracking
--Automatic file archiving
--Absolute path resolution (production-safe)
--Defensive file filtering (CSV-only processing)
--Structured logging (console + file)
--Modular project architecture
+- Strict schema enforcement using PySpark
+- Deduplication using ROW_NUMBER() window function
+- Idempotent database upsert using ON CONFLICT
+- Incremental file processing via metadata tracking
+- Automatic file archiving
+- Absolute path resolution (production-safe)
+- Defensive file filtering (CSV-only processing)
+- Structured logging (console + file)
+- Modular project architecture
 
 Project Structure:
 ```
@@ -201,9 +200,9 @@ SET
 WHERE fact_transactions.transaction_time < EXCLUDED.transaction_time;
 
 This guarantees:
--No duplicate records
--Only latest transaction updates are applied
--Safe re-execution of pipeline
+- No duplicate records
+- Only latest transaction updates are applied
+- Safe re-execution of pipeline
 
 
 
@@ -230,14 +229,14 @@ Production Considerations:
 
 
 What This Demonstrates:
--This project demonstrates practical data engineering concepts:
--Batch ETL design
--Incremental processing
--Metadata-driven control
--Window-based deduplication
--Database upsert patterns
--Production-safe file handling
--Logging and observability
+- This project demonstrates practical data engineering concepts:
+- Batch ETL design
+- Incremental processing
+- Metadata-driven control
+- Window-based deduplication
+- Database upsert patterns
+- Production-safe file handling
+- Logging and observability
 
 
 Design Decisions:
@@ -249,12 +248,12 @@ Design Decisions:
 
 
 Possible Extensions:
--Partitioned data lake storage
--Dockerization
--Airflow orchestration
--AWS S3 integration
--EMR migration
--Data quality checks
--Metrics table for pipeline runs
+- Partitioned data lake storage
+- Dockerization
+- Airflow orchestration
+- AWS S3 integration
+- EMR migration
+- Data quality checks
+- Metrics table for pipeline runs
 
 
