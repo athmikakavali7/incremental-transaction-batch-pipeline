@@ -1,0 +1,5 @@
+transaction_id,user_id,transaction_time,amount,status
+t1,u1,2026-01-01 10:00:00,100,completed
+t2,u2,2026-01-01 10:05:00,200,completed
+t3,u1,2026-01-01 10:10:00,150,completed
+t1,u1,2026-01-01 10:20:00,110,updated
