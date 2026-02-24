@@ -102,11 +102,12 @@ Key Features:
 -Modular project architecture
 
 Project Structure:
+```
 incremental-transaction-batch-pipeline/
 │
 ├── data/
 │   ├── raw/
-│   ├── archive/
+│   └── archive/
 │
 ├── logs/
 │   └── pipeline.log
@@ -118,10 +119,12 @@ incremental-transaction-batch-pipeline/
 │   ├── metadata.py
 │   ├── spark_session.py
 │   ├── logger_config.py
+│   └── config.py
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+```
 
 Database Schema:
 fact_transactions
