@@ -134,11 +134,9 @@ Database Schema:
 - status
 - updated_at
 
-processed_files
-
-file_name (Primary Key)
-
-processed_at
+processed_files:
+- file_name (Primary Key)
+- processed_at
 
 
 Sample Input:
@@ -150,25 +148,41 @@ t1,u1,2026-01-01 10:20:00,110,updated
 
 How to Run:
 
-1️. Clone repository
+1️.Clone Repository
+
+```bash
 git clone <your-repo-url>
 cd incremental-transaction-batch-pipeline
+```
 
-2️. Create virtual environment
+2️.Create Virtual Environment
+
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-3️. Install dependencies
+3️.Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4️. Configure database
+4️. Configure Database
+
 Edit:
+
+```
 src/config.py
+```
+
 Set your PostgreSQL credentials.
 
-5️. Create required tables in PostgreSQL
-Run:
+---
 
+5️. Create Required Tables in PostgreSQL
+
+```sql
 CREATE TABLE IF NOT EXISTS fact_transactions (
     transaction_id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
@@ -182,45 +196,69 @@ CREATE TABLE IF NOT EXISTS processed_files (
     file_name TEXT PRIMARY KEY,
     processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+```
 
-6️. Place CSV file in:
+---
+
+6️. Place CSV File
+
+Put your input CSV file inside:
+
+```
 data/raw/
+```
 
-7️. Execute pipeline
+---
+
+7️. Execute Pipeline
+
+```bash
 python src/main.py
+```
 
+---
 
-Idempotency Strategy:
-The pipeline ensures idempotent behavior using: SQL
+Idempotency Strategy
+
+The pipeline ensures idempotent behavior using PostgreSQL upsert logic:
+
+```sql
 ON CONFLICT (transaction_id)
 DO UPDATE
 SET
-  user_id = EXCLUDED.user_id,
-  transaction_time = EXCLUDED.transaction_time,
-  amount = EXCLUDED.amount,
-  status = EXCLUDED.status,
-  updated_at = CURRENT_TIMESTAMP
+    user_id = EXCLUDED.user_id,
+    transaction_time = EXCLUDED.transaction_time,
+    amount = EXCLUDED.amount,
+    status = EXCLUDED.status,
+    updated_at = CURRENT_TIMESTAMP
 WHERE fact_transactions.transaction_time < EXCLUDED.transaction_time;
+```
 
 This guarantees:
-- No duplicate records
-- Only latest transaction updates are applied
-- Safe re-execution of pipeline
 
+- No duplicate records  
+- Only latest transaction updates are applied  
+- Safe re-execution of the pipeline  
 
+---
 
 Observability
-Structured logging enabled
 
-Logs written to:
+Structured logging is enabled.
+
+Logs are written to:
+
+```
 logs/pipeline.log
+```
 
 Each execution logs:
-Start time
-Files processed
-Records loaded
-Errors
-Completion status
+
+- Start time  
+- Files processed  
+- Records loaded  
+- Errors (if any)  
+- Completion status  
 
 
 Production Considerations:
